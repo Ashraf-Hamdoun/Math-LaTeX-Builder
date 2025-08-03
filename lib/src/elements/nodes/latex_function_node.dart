@@ -16,6 +16,6 @@ class LaTeXFunctionNode extends LaTeXNode {
 
   @override
   String computeLaTeXString() {
-    return "$function(${super.computeLaTeXString()})";
+    return "\\$function(${super.computeLaTeXString()})";
   }
 }

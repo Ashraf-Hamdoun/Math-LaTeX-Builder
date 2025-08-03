@@ -35,7 +35,7 @@ Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  math_latex_builder: ^1.0.8 # Use the latest version
+  math_latex_builder: ^1.0.9 # Use the latest version
 ```
 
 Then, run `flutter pub get` or `dart pub get`.
