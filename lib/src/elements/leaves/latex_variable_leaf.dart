@@ -14,6 +14,6 @@ class LaTeXVariableLeaf extends LaTeXLeaf {
 
   @override
   String computeLaTeXString() {
-    return '\\$child';
+    return '\\text{$child}';
   }
 }
