@@ -42,7 +42,7 @@ Add this to your `pubspec.yaml` file:
 ```yaml
 dependencies:
 <<<<<<< HEAD
-  math_latex_builder: ^1.0.12 # Use the latest version
+  math_latex_builder: ^1.0.13 # Use the latest version
 =======
   math_latex_builder: ^1.0.11 # Use the latest version
 >>>>>>> f131e4673502afd70b9bb757de5dc788b9e55d6d
