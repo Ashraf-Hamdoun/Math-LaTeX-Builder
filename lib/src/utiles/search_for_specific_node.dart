@@ -16,12 +16,18 @@ LaTeXNode? searchForSpecificNode(LaTeXNode parent, Direction direction) {
       if (grandParent is LaTeXNodeWithInitialType &&
           grandParent.initialType == LEType.numeratorNode) {
         proposedParent = grandParent.move(direction);
+      } else if (grandParent is LaTeXNodeWithInitialType &&
+          grandParent.initialType == LEType.upperLimitNode) {
+        proposedParent = grandParent.move(direction);
       } else {
         proposedParent = searchForSpecificNode(grandParent, Direction.down);
       }
     } else {
       if (grandParent is LaTeXNodeWithInitialType &&
           grandParent.initialType == LEType.denominatorNode) {
+        proposedParent = grandParent.move(direction);
+      } else if (grandParent is LaTeXNodeWithInitialType &&
+          grandParent.initialType == LEType.lowerLimitNode) {
         proposedParent = grandParent.move(direction);
       } else {
         proposedParent = searchForSpecificNode(grandParent, Direction.up);

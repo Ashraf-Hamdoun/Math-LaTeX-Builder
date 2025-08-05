@@ -1,10 +1,9 @@
 /// The type of a LaTeX element.
 enum LEType {
-  essentialTrunk,
+  trunk,
   node,
-  essentialLeaf,
+  leaf,
   // Node types
-  normalNode,
   functionNode,
   inverseFunctionNode,
   fractionNode,
@@ -16,9 +15,16 @@ enum LEType {
   indexOfRootNode,
   radicandNode,
   powerNode,
+  lowerLimitNode,
+  upperLimitNode,
+  integrandNode,
+  integralNode,
   // Leaf types
   placeHolderLeaf,
   numberLeaf,
   operatorLeaf,
   variableLeaf,
+  symbolLeaf,
+  specialSymbolLeaf,
+  textLeaf,
 }

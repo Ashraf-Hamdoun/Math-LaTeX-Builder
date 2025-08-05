@@ -11,4 +11,9 @@ class LaTeXVariableLeaf extends LaTeXLeaf {
 
   @override
   String get getType => LEType.variableLeaf.name;
+
+  @override
+  String computeLaTeXString() {
+    return '\\text{$child}';
+  }
 }

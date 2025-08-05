@@ -13,7 +13,7 @@ class LaTeXTrunk extends LaTeXNode {
   });
 
   @override
-  String get getType => LEType.essentialTrunk.name;
+  String get getType => LEType.trunk.name;
 
   /// The default callback for child updates.
   static void _defaultUpdateParent(String childId, String childValue) {}

@@ -10,10 +10,10 @@ String idsGenerator(LEType type, String parentId) {
   String idPrefix;
 
   switch (type) {
-    case LEType.essentialTrunk:
+    case LEType.trunk:
       idPrefix = "t";
       break;
-    case LEType.normalNode:
+    case LEType.node:
       idPrefix = "$parentId-n-norm";
       break;
     case LEType.fractionNode:
@@ -52,7 +52,7 @@ String idsGenerator(LEType type, String parentId) {
     case LEType.variableLeaf:
       idPrefix = "$parentId-l-var";
       break;
-    case LEType.essentialLeaf:
+    case LEType.leaf:
       idPrefix = "$parentId-l-ess";
       break;
     default:

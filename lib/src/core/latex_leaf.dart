@@ -25,7 +25,7 @@ abstract class LaTeXLeaf extends LaTeXElement {
   }
 
   @override
-  String get getType => LEType.essentialLeaf.name;
+  String get getType => LEType.leaf.name;
 
   /// Returns the LaTeX string for the leaf, which is just its content.
   @override
