@@ -8,7 +8,9 @@ void main() {
       tree.addChildLeaf(LEType.numberLeaf, "5");
       tree.addChildLeaf(LEType.operatorLeaf, "+");
       tree.addChildLeaf(LEType.numberLeaf, "1");
-      expect(tree.toLaTeXString, '5+1|');
+      tree.addChildLeaf(LEType.specialSymbolLeaf, 'times');
+      tree.addChildLeaf(LEType.variableLeaf, 'f');
+      expect(tree.toLaTeXString, '5+1\\times\\text{f}|');
     });
 
     test("should add function node correctly", () {
