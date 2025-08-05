@@ -11,9 +11,15 @@ Say goodbye to messy string concatenation. This package provides a robust object
 
 -   **🌳 Intuitive Tree-Based Model**: Represents LaTeX expressions as a logical tree of nodes (like fractions, roots) and leaves (like numbers, operators). This makes complex expressions easy to manage.
 -   **✍️ Cursor-Based Navigation and Editing**: Programmatically move a cursor `up`, `down`, `left`, or `right` through the expression tree to insert or delete elements at any position.
--   **🧮 Rich Set of LaTeX Elements**: Out-of-the-box support for common elements including fractions, square/cube/nth roots, powers, and functions.
+-   **🧮 Rich Set of LaTeX Elements**: Out-of-the-box support for common elements including fractions, square/cube/nth roots, powers, functions, and inverse functions.
 -   **🚀 Pure Dart & Flutter Compatible**: Written in 100% Dart, ensuring seamless integration with any Dart or Flutter project on any platform.
 -   **⚡️ Efficient & Reactive**: Uses a dirty-checking mechanism to ensure that only modified parts of the expression are recomputed, providing excellent performance.
+
+## Visuals
+
+*It is highly recommended to add a screenshot or a GIF to demonstrate the package in action, as it is a UI-based package.*
+
+![Package Demo](https://place-hold.it/700x400?text=Package+Demo+GIF)
 
 ## Core Concept: The LaTeX Tree
 
@@ -29,20 +35,25 @@ Think of `LaTeXTree` as a structured text editor for math. Instead of a flat str
 
 When you add a node, the cursor automatically moves into the logical first part of that node (e.g., into the numerator of a fraction), ready for you to add more elements.
 
-## Installation
+## Getting Started
 
 Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  math_latex_builder: ^1.0.9 # Use the latest version
+  math_latex_builder: ^1.0.10 # Use the latest version
 ```
 
 Then, run `flutter pub get` or `dart pub get`.
 
-## Getting Started
+Import the package in your Dart file:
+```dart
+import 'package:math_latex_builder/math_latex_builder.dart';
+```
 
-Let's build a simple expression: `5+1`
+## Usage Examples
+
+### Simple Example: `5+1`
 
 The `|` character in the output string represents the current cursor position.
 
@@ -68,9 +79,7 @@ void main() {
 }
 ```
 
-## Advanced Usage
-
-### Building a Fraction
+### Advanced Example: Building a Fraction
 
 To build a fraction like `2 + 8/5`, you need to add a `fractionNode` and then populate its numerator and denominator.
 
@@ -99,35 +108,17 @@ tree.addChildLeaf(LEType.numberLeaf, "5");
 print(tree.toLaTeXString); // Output: 2+\frac{8}{5|}
 ```
 
-### Navigation and Deletion
-
-The cursor is key. You can move it around to edit any part of the expression.
+### Inverse Function Example
 
 ```dart
 final tree = LaTeXTree();
 
-// Let's create "sin(x)"
-tree.addChildNode(LEType.functionNode, content: 'sin');
-tree.addChildLeaf(LEType.variableLeaf, 'x');
-print(tree.toLaTeXString); // Output: sin(x|)
+tree.addChildNode(LEType.inverseFunctionNode, content: 'sin');
+tree.addChildLeaf(LEType.numberLeaf, '0');
+tree.addChildLeaf(LEType.symbolLeaf, '.');
+tree.addChildLeaf(LEType.numberLeaf, '5');
 
-// Let's delete the 'x'
-tree.delete();
-print(tree.toLaTeXString); // Output: sin(|)
-
-// Now, let's move outside the function parentheses.
-tree.moveRight();
-print(tree.toLaTeXString); // Output: sin(\square)|
-
-// Add something after the function
-tree.addChildLeaf(LEType.operatorLeaf, "+");
-tree.addChildLeaf(LEType.numberLeaf, "2");
-print(tree.toLaTeXString); // Output: sin(\square)+2|
-
-// If a node becomes empty after a deletion, it can be deleted too.
-tree.moveLeft(); // Move cursor to after 'sin'
-tree.moveLeft(); // Move cursor to before 'sin'
-tree.delete(); // This would delete the sin() node if it were empty.
+print(tree.toLaTeXString); // Output: \sin(0.5|)^{-1}
 ```
 
 ### Complex Example
@@ -179,6 +170,12 @@ print("result : ${tree.toLaTeXString}");
     -   `clear()`: Clears the entire expression.
     -   `toLaTeXString`: Gets the rendered LaTeX string.
 -   **`LEType`**: An enum representing all possible types of leaves and nodes you can add.
+
+## Advanced Topics
+
+-   **Handling User Input**: Connect the `LaTeXTree` methods to a custom keyboard or UI buttons to allow users to build expressions interactively.
+-   **Custom Styling**: Since this package generates a LaTeX string, you can use a rendering package (like `flutter_math_fork`) to control the color, font size, and style of the rendered output.
+-   **Extending with New Elements**: You can extend the package by creating your own `LaTeXNode` or `LaTeXLeaf` subclasses to support custom LaTeX commands or structures.
 
 ## Contributing
 

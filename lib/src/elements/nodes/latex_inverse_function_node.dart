@@ -16,6 +16,6 @@ class LaTeXInverseFunctionNode extends LaTeXNode {
 
   @override
   String computeLaTeXString() {
-    return "$function(${super.computeLaTeXString()})^{-1}";
+    return "\\$function(${super.computeLaTeXString()})^{-1}";
   }
 }

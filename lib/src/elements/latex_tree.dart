@@ -4,6 +4,7 @@ import 'package:math_latex_builder/src/core/latex_leaf.dart';
 import 'package:math_latex_builder/src/core/latex_node.dart';
 import 'package:math_latex_builder/src/elements/latex_trunk.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_fraction_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_nth_root_node.dart';
 import 'package:math_latex_builder/src/utiles/leaves_generator.dart';
 import 'package:math_latex_builder/src/utiles/nodes_generator.dart';
@@ -51,6 +52,8 @@ class LaTeXTree {
       activeParent = node.numerator;
     } else if (node is LaTeXNthRootNode) {
       activeParent = node.indexOfRoot;
+    } else if (node is LaTeXIntegralNode) {
+      activeParent = node.lowerLimit;
     } else {
       activeParent = node;
     }

@@ -16,9 +16,16 @@ enum LEType {
   indexOfRootNode,
   radicandNode,
   powerNode,
+  lowerLimitNode,
+  upperLimitNode,
+  integrandNode,
+  integralNode,
   // Leaf types
   placeHolderLeaf,
   numberLeaf,
   operatorLeaf,
   variableLeaf,
+  symbolLeaf,
+  specialSymbolLeaf,
+  textLeaf,
 }

@@ -3,6 +3,7 @@ import 'package:math_latex_builder/src/constants/latex_element_type.dart';
 import 'package:math_latex_builder/src/core/latex_element.dart';
 import 'package:math_latex_builder/src/core/latex_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_fraction_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_node_with_initial_type.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_nth_root_node.dart';
 import 'package:math_latex_builder/src/utiles/search_for_specific_node.dart';
@@ -36,12 +37,16 @@ LaTeXNode? handleMove(Direction direction, LaTeXNode parent) {
         proposedParent = proposedParent.move(direction);
       } else if (proposedParent is LaTeXNthRootNode) {
         proposedParent = proposedParent.move(direction);
+      } else if (proposedParent is LaTeXIntegralNode) {
+        proposedParent = proposedParent.move(direction);
       }
     } else {
       if (proposedParent is LaTeXFractionNode) {
         proposedParent = proposedParent.numerator;
       } else if (proposedParent is LaTeXNthRootNode) {
         proposedParent = proposedParent.indexOfRoot;
+      } else if (proposedParent is LaTeXIntegralNode) {
+        proposedParent = proposedParent.lowerLimit;
       }
     }
   }
@@ -55,12 +60,24 @@ LaTeXNode? handleMoveRight(LaTeXNode parent) {
   LaTeXNode? grandParent = parent.parent;
   int position = parent.position;
 
+  // Still inside the parent and there are available moves.
   if (position < parent.children.length - 1) {
-    parent.position++;
-    proposedParent = parent;
+    // if the next child is a node, then we must enter it
+    if (parent.children[position + 1] is LaTeXNode) {
+      parent.position++;
+      proposedParent = parent.children[position + 1] as LaTeXNode;
+    } else {
+      parent.position++;
+      proposedParent = parent;
+    }
   } else {
+    // At the end and the available move to go outside.
     if (grandParent != null) {
-      proposedParent = grandParent;
+      if (grandParent is LaTeXIntegralNode) {
+        proposedParent = grandParent.move(Direction.right);
+      } else {
+        proposedParent = grandParent;
+      }
     } else {
       proposedParent = null;
     }
@@ -87,6 +104,9 @@ LaTeXNode? handleMoveLeft(LaTeXNode parent) {
     if (grandParent != null) {
       if (grandParent is LaTeXFractionNode) {
         proposedParent = grandParent.move(Direction.left);
+      }
+      if (grandParent is LaTeXIntegralNode) {
+        proposedParent = grandParent.move(Direction.left);
       } else {
         grandParent.position--;
         proposedParent = grandParent;
@@ -108,6 +128,9 @@ LaTeXNode? handleMoveDown(LaTeXNode parent) {
     if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.numeratorNode) {
       proposedParent = (grandParent as LaTeXFractionNode).denominator;
+    } else if (parent is LaTeXNodeWithInitialType &&
+        parent.initialType == LEType.upperLimitNode) {
+      proposedParent = (grandParent as LaTeXIntegralNode).lowerLimit;
     } else {
       proposedParent = searchForSpecificNode(parent, Direction.down);
     }
@@ -127,6 +150,9 @@ LaTeXNode? handleMoveUp(LaTeXNode parent) {
     if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.denominatorNode) {
       proposedParent = (grandParent as LaTeXFractionNode).numerator;
+    } else if (parent is LaTeXNodeWithInitialType &&
+        parent.initialType == LEType.lowerLimitNode) {
+      proposedParent = (grandParent as LaTeXIntegralNode).upperLimit;
     } else {
       proposedParent = searchForSpecificNode(parent, Direction.up);
     }

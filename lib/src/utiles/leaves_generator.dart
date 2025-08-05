@@ -3,6 +3,9 @@ import 'package:math_latex_builder/src/core/latex_leaf.dart';
 import 'package:math_latex_builder/src/core/latex_node.dart';
 import 'package:math_latex_builder/src/elements/leaves/latex_number_leaf.dart';
 import 'package:math_latex_builder/src/elements/leaves/latex_operator_leaf.dart';
+import 'package:math_latex_builder/src/elements/leaves/latex_special_symbol_leaf.dart';
+import 'package:math_latex_builder/src/elements/leaves/latex_symbol_leaf.dart';
+import 'package:math_latex_builder/src/elements/leaves/latex_text_leaf.dart';
 import 'package:math_latex_builder/src/elements/leaves/latex_variable_leaf.dart';
 import 'package:math_latex_builder/src/utiles/ids_generator.dart';
 
@@ -37,6 +40,30 @@ LaTeXLeaf leavesGenerator({
       leaf = LaTeXVariableLeaf(
         child: content,
         id: idsGenerator(LEType.operatorLeaf, parent.id),
+        parent: parent,
+      );
+      break;
+
+    case LEType.symbolLeaf:
+      leaf = LaTeXSymbolLeaf(
+        child: content,
+        id: idsGenerator(LEType.symbolLeaf, parent.id),
+        parent: parent,
+      );
+      break;
+
+    case LEType.specialSymbolLeaf:
+      leaf = LaTeXSpecialSymbolLeaf(
+        child: content,
+        id: idsGenerator(LEType.specialSymbolLeaf, parent.id),
+        parent: parent,
+      );
+      break;
+
+    case LEType.textLeaf:
+      leaf = LaTeXTextLeaf(
+        child: content,
+        id: idsGenerator(LEType.textLeaf, parent.id),
         parent: parent,
       );
       break;

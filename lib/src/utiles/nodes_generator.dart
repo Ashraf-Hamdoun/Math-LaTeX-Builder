@@ -1,6 +1,8 @@
 import 'package:math_latex_builder/src/constants/latex_element_type.dart';
 import 'package:math_latex_builder/src/core/latex_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_function_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_inverse_function_node.dart';
 import 'package:math_latex_builder/src/utiles/ids_generator.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_cube_root_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_fraction_node.dart';
@@ -22,6 +24,16 @@ LaTeXNode nodesGenerator({
   switch (type) {
     case LEType.functionNode:
       node = LaTeXFunctionNode(
+        id: idsGenerator(type, parent.id),
+        parent: parent,
+        updateParent: (childId, childValue) =>
+            parent.onUpdateChildren(childId, childValue),
+        function: content,
+      );
+      break;
+
+    case LEType.inverseFunctionNode:
+      node = LaTeXInverseFunctionNode(
         id: idsGenerator(type, parent.id),
         parent: parent,
         updateParent: (childId, childValue) =>
@@ -73,6 +85,14 @@ LaTeXNode nodesGenerator({
         updateParent: (childId, childValue) =>
             parent.onUpdateChildren(childId, childValue),
       );
+      break;
+
+    case LEType.integralNode:
+      node = LaTeXIntegralNode(
+          id: idsGenerator(type, parent.id),
+          parent: parent,
+          updateParent: (childId, childValue) =>
+              parent.onUpdateChildren(childId, childValue));
       break;
 
     default:
