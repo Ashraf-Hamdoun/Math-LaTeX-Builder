@@ -1,7 +1,9 @@
 import 'package:math_latex_builder/src/constants/directions.dart';
 import 'package:math_latex_builder/src/constants/latex_element_type.dart';
 import 'package:math_latex_builder/src/core/latex_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_node_with_initial_type.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_summation_node.dart';
 
 /// Searches for a specific node in the LaTeX tree.
 ///
@@ -19,6 +21,11 @@ LaTeXNode? searchForSpecificNode(LaTeXNode parent, Direction direction) {
       } else if (grandParent is LaTeXNodeWithInitialType &&
           grandParent.initialType == LEType.upperLimitNode) {
         proposedParent = grandParent.move(direction);
+      } else if (grandParent is LaTeXNodeWithInitialType &&
+          grandParent.initialType == LEType.integrandNode &&
+          (grandParent.parent is LaTeXSummationNode ||
+              grandParent.parent is LaTeXIntegralNode)) {
+        proposedParent = grandParent.move(direction);
       } else {
         proposedParent = searchForSpecificNode(grandParent, Direction.down);
       }
@@ -28,6 +35,11 @@ LaTeXNode? searchForSpecificNode(LaTeXNode parent, Direction direction) {
         proposedParent = grandParent.move(direction);
       } else if (grandParent is LaTeXNodeWithInitialType &&
           grandParent.initialType == LEType.lowerLimitNode) {
+        proposedParent = grandParent.move(direction);
+      } else if (grandParent is LaTeXNodeWithInitialType &&
+          grandParent.initialType == LEType.integrandNode &&
+          (grandParent.parent is LaTeXSummationNode ||
+              grandParent.parent is LaTeXIntegralNode)) {
         proposedParent = grandParent.move(direction);
       } else {
         proposedParent = searchForSpecificNode(grandParent, Direction.up);

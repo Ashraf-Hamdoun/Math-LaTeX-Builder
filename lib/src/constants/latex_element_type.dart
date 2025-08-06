@@ -19,6 +19,8 @@ enum LEType {
   upperLimitNode,
   integrandNode,
   integralNode,
+  summandNode,
+  summationNode,
   // Leaf types
   placeHolderLeaf,
   numberLeaf,

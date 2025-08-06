@@ -3,6 +3,7 @@ import 'package:math_latex_builder/src/core/latex_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_function_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_inverse_function_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_summation_node.dart';
 import 'package:math_latex_builder/src/utiles/ids_generator.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_cube_root_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_fraction_node.dart';
@@ -89,6 +90,14 @@ LaTeXNode nodesGenerator({
 
     case LEType.integralNode:
       node = LaTeXIntegralNode(
+          id: idsGenerator(type, parent.id),
+          parent: parent,
+          updateParent: (childId, childValue) =>
+              parent.onUpdateChildren(childId, childValue));
+      break;
+
+    case LEType.summationNode:
+      node = LaTeXSummationNode(
           id: idsGenerator(type, parent.id),
           parent: parent,
           updateParent: (childId, childValue) =>

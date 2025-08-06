@@ -3,188 +3,180 @@
 [![pub version](https://img.shields.io/pub/v/math_latex_builder.svg)](https://pub.dev/packages/math_latex_builder)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A powerful and intuitive Dart package to programmatically build, manipulate, and render LaTeX math expressions using a tree-based structure.
+## Programmatic LaTeX Math Expression Construction for Dart & Flutter
 
-Say goodbye to messy string concatenation. This package provides a robust object-oriented approach to handle complex math formulas with ease, making it ideal for educational apps, scientific calculators, or any Flutter/Dart project that requires dynamic LaTeX generation.
+The `math_latex_builder` is a robust and intuitive Dart package engineered for the programmatic construction and manipulation of complex LaTeX mathematical expressions. Moving beyond rudimentary string concatenation, this library introduces a sophisticated tree-based data model, enabling developers to build, traverse, and modify mathematical formulas with unparalleled precision and control.
 
-## Key Features
+Ideal for educational applications, scientific tools, dynamic formula editors, or any Dart/Flutter project requiring the generation of intricate mathematical notation, `math_latex_builder` streamlines the process of creating syntactically correct and semantically rich LaTeX output.
 
--   **🌳 Intuitive Tree-Based Model**: Represents LaTeX expressions as a logical tree of nodes (like fractions, roots) and leaves (like numbers, operators). This makes complex expressions easy to manage.
--   **✍️ Cursor-Based Navigation and Editing**: Programmatically move a cursor `up`, `down`, `left`, or `right` through the expression tree to insert or delete elements at any position.
--   **🧮 Rich Set of LaTeX Elements**: Out-of-the-box support for common elements including fractions, square/cube/nth roots, powers, functions, and inverse functions.
--   **🚀 Pure Dart & Flutter Compatible**: Written in 100% Dart, ensuring seamless integration with any Dart or Flutter project on any platform.
--   **⚡️ Efficient & Reactive**: Uses a dirty-checking mechanism to ensure that only modified parts of the expression are recomputed, providing excellent performance.
+## Key Capabilities
 
-## Visuals
+-   **🌳 Hierarchical Tree-Based Model**: Represents LaTeX expressions as a logical, navigable tree structure, where nodes encapsulate structural elements (e.g., fractions, roots, integrals) and leaves represent atomic components (e.g., numbers, operators, variables). This architectural choice ensures robust management and manipulation of arbitrarily complex expressions.
+-   **✍️ Granular Cursor-Based Manipulation**: Features an advanced cursor mechanism that defines the active insertion or modification point within the expression tree. This allows for precise, programmatic navigation (`moveUp`, `moveDown`, `moveLeft`, `moveRight`) and targeted insertion or deletion of elements, mimicking an intelligent mathematical text editor.
+-   **🧮 Comprehensive LaTeX Element Support**: Provides out-of-the-box support for a wide array of standard LaTeX mathematical constructs, including:
+    -   Fractions (`\frac{...}{...}`)
+    -   Roots (Square `\sqrt{...}`, Cube `\sqrt[3]{...}`, Nth `\sqrt[n]{...}`)
+    -   Powers and Superscripts (`^{...}`)
+    -   Functions (e.g., `\sin(...)`, `\cos(...)`) and Inverse Functions (`\sin^{-1}(...)`)
+    -   Integrals (`\int_{...}^{...}{...}`)
+    -   Summations (`\sum_{...}^{...}{...}`)
+    -   Standard operators, numbers, variables (e.g., `$x# Math LaTeX Builder
 
-*It is highly recommended to add a screenshot or a GIF to demonstrate the package in action, as it is a UI-based package.*
+[![pub version](https://img.shields.io/pub/v/math_latex_builder.svg)](https://pub.dev/packages/math_latex_builder)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-![Package Demo](https://place-hold.it/700x400?text=Package+Demo+GIF)
+## Programmatic LaTeX Math Expression Construction for Dart & Flutter
 
-## Core Concept: The LaTeX Tree
+The `math_latex_builder` is a robust and intuitive Dart package engineered for the programmatic construction and manipulation of complex LaTeX mathematical expressions. Moving beyond rudimentary string concatenation, this library introduces a sophisticated tree-based data model, enabling developers to build, traverse, and modify mathematical formulas with unparalleled precision and control.
 
-Think of `LaTeXTree` as a structured text editor for math. Instead of a flat string, your expression lives in a tree.
+Ideal for educational applications, scientific tools, dynamic formula editors, or any Dart/Flutter project requiring the generation of intricate mathematical notation, `math_latex_builder` streamlines the process of creating syntactically correct and semantically rich LaTeX output.
 
--   **`LaTeXTree`**: The main class you interact with. It holds the entire expression.
--   **The Cursor (Active Node)**: The tree always has a "cursor" (an active node) that determines where new elements will be placed.
--   **`LaTeXNode`**: A structural element that can have children. Examples:
-    -   `fractionNode`: Has a `numerator` and a `denominator` node.
-    -   `squareRootNode`: Contains the radicand.
-    -   `nthRootNode`: Has an `indexOfRoot` and a `radicand`.
--   **`LaTeXLeaf`**: A content element, like a number (`5`), an operator (`+`), or a variable (`x`). Leaves are the actual content of your expression.
+## Key Capabilities
 
-When you add a node, the cursor automatically moves into the logical first part of that node (e.g., into the numerator of a fraction), ready for you to add more elements.
+-   **🌳 Hierarchical Tree-Based Model**: Represents LaTeX expressions as a logical, navigable tree structure, where nodes encapsulate structural elements (e.g., fractions, roots, integrals) and leaves represent atomic components (e.g., numbers, operators, variables). This architectural choice ensures robust management and manipulation of arbitrarily complex expressions.
+-   **✍️ Granular Cursor-Based Manipulation**: Features an advanced cursor mechanism that defines the active insertion or modification point within the expression tree. This allows for precise, programmatic navigation (`moveUp`, `moveDown`, `moveLeft`, `moveRight`) and targeted insertion or deletion of elements, mimicking an intelligent mathematical text editor.
+-   **🧮 Comprehensive LaTeX Element Support**: Provides out-of-the-box support for a wide array of standard LaTeX mathematical constructs, including:
+    -   Fractions (`\frac{...}{...}`)
+    -   Roots (Square `\sqrt{...}`, Cube `\sqrt[3]{...}`, Nth `\sqrt[n]{...}`)
+    -   Powers and Superscripts (`^{...}`)
+    -   Functions (e.g., `\sin(...)`, `\cos(...)`) and Inverse Functions (`\sin^{-1}(...)`)
+    -   Integrals (`\int_{...}^{...}{...}`)
+    -   Summations (`\sum_{...}^{...}{...}`)
+    ), and symbols.
+-   **🚀 Pure Dart & Cross-Platform Compatibility**: Developed entirely in Dart, ensuring seamless integration and consistent performance across all Dart and Flutter supported platforms (Web, Mobile, Desktop).
+-   **⚡️ Optimized Performance**: Employs a "dirty-checking" mechanism to intelligently recompute only the modified segments of the LaTeX string, minimizing overhead and ensuring efficient rendering, particularly for dynamic or frequently updated expressions.
+
+## Visual Demonstration
+
+*(Consider embedding a GIF or screenshot here to visually showcase the package's capabilities, especially its dynamic expression building and cursor navigation. This is crucial for UI-oriented packages.)*
+
+![Package Demo](https://place-hold.it/700x400?text=Dynamic+LaTeX+Generation+Demo)
+
+## Architectural Foundation: The LaTeX Expression Tree
+
+At its core, `math_latex_builder` abstracts the complexity of LaTeX syntax into an intuitive object-oriented tree.
+
+-   **`LaTeXTree`**: The primary entry point for interaction, managing the entire expression and its state.
+-   **Active Node (Cursor)**: A dynamic pointer within the tree, dictating where subsequent operations (additions, deletions) will occur.
+-   **`LaTeXNode`**: Abstract base class for structural LaTeX elements that can contain child elements (e.g., `FractionNode`, `NthRootNode`, `IntegralNode`).
+-   **`LaTeXLeaf`**: Abstract base class for terminal LaTeX elements representing atomic content (e.g., `NumberLeaf`, `OperatorLeaf`, `VariableLeaf`).
+
+When a new `LaTeXNode` is introduced, the cursor intelligently positions itself within the node's primary input field (e.g., the numerator of a fraction), ready for immediate content population.
 
 ## Getting Started
 
-Add this to your `pubspec.yaml` file:
+Integrate `math_latex_builder` into your Dart or Flutter project by adding it to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-<<<<<<< HEAD
-  math_latex_builder: ^1.0.13 # Use the latest version
-=======
-  math_latex_builder: ^1.0.11 # Use the latest version
->>>>>>> f131e4673502afd70b9bb757de5dc788b9e55d6d
+  math_latex_builder: ^1.0.15 # Always use the latest stable version
 ```
 
-Then, run `flutter pub get` or `dart pub get`.
+Then, execute `flutter pub get` or `dart pub get` to fetch the package.
 
-Import the package in your Dart file:
+Import the library in your Dart code:
+
 ```dart
 import 'package:math_latex_builder/math_latex_builder.dart';
 ```
 
 ## Usage Examples
 
-### Simple Example: `5+1`
+### Basic Expression Construction: `5 + 1`
 
-The `|` character in the output string represents the current cursor position.
+The `|` character in the output string denotes the current cursor position within the LaTeX expression.
 
 ```dart
 import 'package:math_latex_builder/math_latex_builder.dart';
 
 void main() {
-  // 1. Create a tree instance.
   final tree = LaTeXTree();
-  print(tree.toLaTeXString); // Output: |
+  print(tree.toLaTeXString); // Output: | (Empty tree, cursor at root)
 
-  // 2. Add a number leaf. The cursor moves after it.
   tree.addChildLeaf(LEType.numberLeaf, "5");
   print(tree.toLaTeXString); // Output: 5|
 
-  // 3. Add an operator leaf.
   tree.addChildLeaf(LEType.operatorLeaf, "+");
   print(tree.toLaTeXString); // Output: 5+|
 
-  // 4. Add another number leaf.
   tree.addChildLeaf(LEType.numberLeaf, "1");
   print(tree.toLaTeXString); // Output: 5+1|
 }
 ```
 
-### Advanced Example: Building a Fraction
+### Constructing a Fraction: `2 + 8/5`
 
-To build a fraction like `2 + 8/5`, you need to add a `fractionNode` and then populate its numerator and denominator.
+Demonstrates adding a structural node and navigating its sub-elements.
 
 ```dart
 final tree = LaTeXTree();
 
-// Build "2+"
 tree.addChildLeaf(LEType.numberLeaf, "2");
 tree.addChildLeaf(LEType.operatorLeaf, "+");
 print(tree.toLaTeXString); // Output: 2+|
 
-// Add a fraction node. The cursor automatically moves to the numerator.
+// Add a fraction node; cursor automatically moves to the numerator.
 tree.addChildNode(LEType.fractionNode);
 print(tree.toLaTeXString); // Output: 2+\frac{ |}{\square}
 
-// Add the numerator.
+// Populate the numerator.
 tree.addChildLeaf(LEType.numberLeaf, "8");
 print(tree.toLaTeXString); // Output: 2+\frac{8|}{\square}
 
-// Move the cursor down to the denominator.
+// Move the cursor to the denominator.
 tree.moveDown();
 print(tree.toLaTeXString); // Output: 2+\frac{8}{ |}
 
-// Add the denominator.
+// Populate the denominator.
 tree.addChildLeaf(LEType.numberLeaf, "5");
 print(tree.toLaTeXString); // Output: 2+\frac{8}{5|}
 ```
 
-### Inverse Function Example
+### Integral Expression: `\int_{0}^{\infty} f(x) dx`
 
 ```dart
 final tree = LaTeXTree();
 
-tree.addChildNode(LEType.inverseFunctionNode, content: 'sin');
-tree.addChildLeaf(LEType.numberLeaf, '0');
-tree.addChildLeaf(LEType.symbolLeaf, '.');
-tree.addChildLeaf(LEType.numberLeaf, '5');
+tree.addChildNode(LEType.integralNode); // Cursor moves to lower limit
+tree.addChildLeaf(LEType.numberLeaf, "0");
+print(tree.toLaTeXString); // Output: \int_{0|}^{\square}\square
 
-print(tree.toLaTeXString); // Output: \sin(0.5|)^{-1}
-```
+tree.moveUp(); // Move to upper limit
+tree.addChildLeaf(LEType.specialSymbolLeaf, "infty"); // \infty
+print(tree.toLaTeXString); // Output: \int_{0}^{\infty|}\square
 
-### Complex Example
+tree.moveRight(); // Move to integrand
+tree.addChildLeaf(LEType.textLeaf, "f(x)");
+print(tree.toLaTeXString); // Output: \int_{0}^{\infty}\text{f(x)}|
 
-Here is the code to generate the expression `4+\frac{15-\sqrt{7}}{\sqrt[9]{\frac{3}{8}}}`.
-
-```dart
-final tree = LaTeXTree();
-
-tree.addChildLeaf(LEType.numberLeaf, "4");
-tree.addChildLeaf(LEType.operatorLeaf, "+");
-
-// Create the main fraction
-tree.addChildNode(LEType.fractionNode); // Cursor moves to numerator
-
-// Build the numerator: 15-\sqrt{7}
-tree.addChildLeaf(LEType.numberLeaf, "1");
-tree.addChildLeaf(LEType.numberLeaf, "5");
-tree.addChildLeaf(LEType.operatorLeaf, "-");
-tree.addChildNode(LEType.squareRootNode); // Cursor moves into sqrt
-tree.addChildLeaf(LEType.numberLeaf, "7");
-
-// Move from the numerator to the denominator
-tree.moveDown(); // Cursor is now in the denominator
-
-// Build the denominator: \sqrt[9]{\frac{3}{8}}
-tree.addChildNode(LEType.nthRootNode); // Cursor moves to the root's index
-tree.addChildLeaf(LEType.numberLeaf, "9");
-
-tree.moveRight(); // Cursor moves to the radicand (the content of the root)
-tree.addChildNode(LEType.fractionNode); // Cursor moves to the inner fraction's numerator
-tree.addChildLeaf(LEType.numberLeaf, "3");
-
-tree.moveDown(); // Cursor moves to the inner fraction's denominator
-tree.addChildLeaf(LEType.numberLeaf, "8");
-
-// Final result with cursor at the end
-print("result : ${tree.toLaTeXString}");
-// 4+\frac{15-\sqrt{7}}{\sqrt[9]{\frac{3}{8|}}}
+// For a complete integral, you might manually append 'dx' or similar
+// depending on your rendering needs, as the tree focuses on the mathematical structure.
 ```
 
 ## API Reference
 
--   **`LaTeXTree`**: The main class.
-    -   `addChildLeaf(LEType type, String content)`: Adds a content leaf.
-    -   `addChildNode(LEType type, {String content = ""})`: Adds a structural node.
-    -   `moveUp()`, `moveDown()`, `moveLeft()`, `moveRight()`: Navigates the cursor.
-    -   `delete()`: Deletes the element or node to the left of the cursor.
-    -   `clear()`: Clears the entire expression.
-    -   `toLaTeXString`: Gets the rendered LaTeX string.
--   **`LEType`**: An enum representing all possible types of leaves and nodes you can add.
+The `math_latex_builder` API is designed for clarity and ease of use:
 
-## Advanced Topics
+-   **`LaTeXTree`**: The central class for managing the LaTeX expression.
+    -   `addChildLeaf(LEType type, String content)`: Appends a new leaf element (e.g., number, operator, symbol) at the current cursor position.
+    -   `addChildNode(LEType type, {String content = ""})`: Inserts a new structural node (e.g., fraction, root, power) at the cursor. The cursor then automatically moves into the node's primary input field.
+    -   `moveUp()`, `moveDown()`, `moveLeft()`, `moveRight()`: Navigates the cursor through the expression tree. These methods intelligently handle transitions between nested nodes.
+    -   `delete()`: Removes the element or node immediately to the left of the cursor. Handles complex node deletions gracefully.
+    -   `clear()`: Resets the entire expression tree to an empty state.
+    -   `toLaTeXString`: A getter that returns the fully rendered LaTeX string of the current expression, including the cursor marker.
+-   **`LEType`**: An enumeration defining all supported types of LaTeX leaves and nodes, ensuring type-safe and explicit element creation.
 
--   **Handling User Input**: Connect the `LaTeXTree` methods to a custom keyboard or UI buttons to allow users to build expressions interactively.
--   **Custom Styling**: Since this package generates a LaTeX string, you can use a rendering package (like `flutter_math_fork`) to control the color, font size, and style of the rendered output.
--   **Extending with New Elements**: You can extend the package by creating your own `LaTeXNode` or `LaTeXLeaf` subclasses to support custom LaTeX commands or structures.
+## Advanced Topics & Extensibility
+
+-   **Interactive User Interfaces**: The `LaTeXTree`'s cursor-based manipulation and `toLaTeXString` output make it perfectly suited for integration with custom on-screen keyboards or interactive UI components in Flutter, enabling users to build complex equations dynamically.
+-   **Custom Rendering**: As `math_latex_builder` outputs standard LaTeX strings, it can be seamlessly paired with any LaTeX rendering engine (e.g., `flutter_math_fork` for Flutter, or external LaTeX compilers) to achieve desired visual styles, fonts, and display properties.
+-   **Extending Functionality**: The modular design, based on `LaTeXNode` and `LaTeXLeaf` abstractions, allows developers to easily extend the package by implementing custom subclasses for new LaTeX commands or specialized mathematical structures not natively supported.
+-   **State Management**: The `isDirty` flag and `setDirty()` mechanism within `LaTeXElement` provide an efficient way to manage state and trigger re-renders only when necessary, which is beneficial for performance in reactive frameworks.
 
 ## Contributing
 
-Contributions are welcome! If you find a bug or have a feature request, please file an issue. If you want to contribute code, please feel free to open a pull request.
+We welcome contributions from the community! If you encounter any bugs, have feature requests, or wish to contribute code, please refer to our [issue tracker](https://github.com/Ashraf-Hamdoun/Math-LaTeX-Builder/issues) and consider opening a pull request. Adherence to existing code style and testing practices is appreciated.
 
 ## License
 
-This package is licensed under the [MIT License](LICENSE).
+This package is distributed under the [MIT License](LICENSE).

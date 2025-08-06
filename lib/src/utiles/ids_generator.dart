@@ -43,6 +43,12 @@ String idsGenerator(LEType type, String parentId) {
     case LEType.powerNode:
       idPrefix = "$parentId-n-pow";
       break;
+    case LEType.integralNode:
+      idPrefix = "$parentId-n-int";
+      break;
+    case LEType.summationNode:
+      idPrefix = "$parentId-n-sum";
+      break;
     case LEType.numberLeaf:
       idPrefix = "$parentId-l-num";
       break;

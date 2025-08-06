@@ -6,6 +6,7 @@ import 'package:math_latex_builder/src/elements/nodes/latex_fraction_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_integral_node.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_node_with_initial_type.dart';
 import 'package:math_latex_builder/src/elements/nodes/latex_nth_root_node.dart';
+import 'package:math_latex_builder/src/elements/nodes/latex_summation_node.dart';
 import 'package:math_latex_builder/src/utiles/search_for_specific_node.dart';
 
 /// Handles the movement of the cursor in the LaTeX tree.
@@ -39,6 +40,8 @@ LaTeXNode? handleMove(Direction direction, LaTeXNode parent) {
         proposedParent = proposedParent.move(direction);
       } else if (proposedParent is LaTeXIntegralNode) {
         proposedParent = proposedParent.move(direction);
+      } else if (proposedParent is LaTeXSummationNode) {
+        proposedParent = proposedParent.move(direction);
       }
     } else {
       if (proposedParent is LaTeXFractionNode) {
@@ -46,6 +49,8 @@ LaTeXNode? handleMove(Direction direction, LaTeXNode parent) {
       } else if (proposedParent is LaTeXNthRootNode) {
         proposedParent = proposedParent.indexOfRoot;
       } else if (proposedParent is LaTeXIntegralNode) {
+        proposedParent = proposedParent.lowerLimit;
+      } else if (proposedParent is LaTeXSummationNode) {
         proposedParent = proposedParent.lowerLimit;
       }
     }
@@ -74,6 +79,8 @@ LaTeXNode? handleMoveRight(LaTeXNode parent) {
     // At the end and the available move to go outside.
     if (grandParent != null) {
       if (grandParent is LaTeXIntegralNode) {
+        proposedParent = grandParent.move(Direction.right);
+      } else if (grandParent is LaTeXSummationNode) {
         proposedParent = grandParent.move(Direction.right);
       } else {
         proposedParent = grandParent;
@@ -107,6 +114,8 @@ LaTeXNode? handleMoveLeft(LaTeXNode parent) {
       }
       if (grandParent is LaTeXIntegralNode) {
         proposedParent = grandParent.move(Direction.left);
+      } else if (grandParent is LaTeXSummationNode) {
+        proposedParent = grandParent.move(Direction.left);
       } else {
         grandParent.position--;
         proposedParent = grandParent;
@@ -130,7 +139,11 @@ LaTeXNode? handleMoveDown(LaTeXNode parent) {
       proposedParent = (grandParent as LaTeXFractionNode).denominator;
     } else if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.upperLimitNode) {
-      proposedParent = (grandParent as LaTeXIntegralNode).lowerLimit;
+      if (grandParent is LaTeXIntegralNode) {
+        proposedParent = grandParent.lowerLimit;
+      } else if (grandParent is LaTeXSummationNode) {
+        proposedParent = grandParent.lowerLimit;
+      }
     } else {
       proposedParent = searchForSpecificNode(parent, Direction.down);
     }
@@ -152,7 +165,11 @@ LaTeXNode? handleMoveUp(LaTeXNode parent) {
       proposedParent = (grandParent as LaTeXFractionNode).numerator;
     } else if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.lowerLimitNode) {
-      proposedParent = (grandParent as LaTeXIntegralNode).upperLimit;
+      if (grandParent is LaTeXIntegralNode) {
+        proposedParent = grandParent.upperLimit;
+      } else if (grandParent is LaTeXSummationNode) {
+        proposedParent = grandParent.upperLimit;
+      }
     } else {
       proposedParent = searchForSpecificNode(parent, Direction.up);
     }

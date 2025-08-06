@@ -10,7 +10,7 @@ void main() {
       tree.addChildLeaf(LEType.numberLeaf, "1");
       tree.addChildLeaf(LEType.specialSymbolLeaf, 'times');
       tree.addChildLeaf(LEType.variableLeaf, 'f');
-      expect(tree.toLaTeXString, '5+1\\times\\text{f}|');
+      expect(tree.toLaTeXString, '5+1\\times\$f\$|');
     });
 
     test("should add function node correctly", () {
@@ -76,6 +76,19 @@ void main() {
       tree.addChildLeaf(LEType.numberLeaf, "4");
       tree.addChildLeaf(LEType.numberLeaf, "5");
       expect(tree.toLaTeXString, '7^{45|}');
+    });
+
+    test("should add summation node correctly", () {
+      final LaTeXTree tree = LaTeXTree();
+      tree.addChildNode(LEType.summationNode);
+      tree.addChildLeaf(LEType.variableLeaf, "n");
+      tree.addChildLeaf(LEType.operatorLeaf, "=");
+      tree.addChildLeaf(LEType.numberLeaf, "0");
+      tree.moveUp();
+      tree.addChildLeaf(LEType.symbolLeaf, "\\infty");
+      tree.moveRight();
+      tree.addChildLeaf(LEType.textLeaf, "f(n)");
+      expect(tree.toLaTeXString, '\\sum_{\$n\$=0}^{\\infty}\\text{f(n)}|');
     });
   });
 }
