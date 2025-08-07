@@ -39,32 +39,32 @@ void main() {
       tree.addChildNode(LEType.functionNode, content: "sin");
       print("test the result of adding.");
       tree.addChildLeaf(LEType.variableLeaf, "x");
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$|)");
+      expect(tree.toLaTeXString, "4+\\sin(x|)");
 
       // Leave the node
       print("test the result of leaving the node form right side.");
       tree.moveRight();
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$)|");
+      expect(tree.toLaTeXString, "4+\\sin(x)|");
 
       // Enter the node
       print("test the result of entering form right side.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$|)");
+      expect(tree.toLaTeXString, "4+\\sin(x|)");
 
       // Moving throw leaves of the node.
       print("test the result of moving inside the node.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+\\sin(|\$x\$)");
+      expect(tree.toLaTeXString, "4+\\sin(|x)");
 
       // Leaving the node
       print("test the result of leaving form left side.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+|\\sin(\$x\$)");
+      expect(tree.toLaTeXString, "4+|\\sin(x)");
 
       // Enter the node
       print("test the result of entering form left side.");
       tree.moveRight();
-      expect(tree.toLaTeXString, "4+\\sin(|\$x\$)");
+      expect(tree.toLaTeXString, "4+\\sin(|x)");
     });
 
     test('should leave and enter inverse function node correctly', () {
@@ -75,32 +75,32 @@ void main() {
       tree.addChildNode(LEType.inverseFunctionNode, content: "sin");
       print("test the result of adding.");
       tree.addChildLeaf(LEType.variableLeaf, "x");
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$|)^{-1}");
+      expect(tree.toLaTeXString, "4+\\sin(x|)^{-1}");
 
       // Leave the node
       print("test the result of leaving the node form right side.");
       tree.moveRight();
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$)^{-1}|");
+      expect(tree.toLaTeXString, "4+\\sin(x)^{-1}|");
 
       // Enter the node
       print("test the result of entering form right side.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+\\sin(\$x\$|)^{-1}");
+      expect(tree.toLaTeXString, "4+\\sin(x|)^{-1}");
 
       // Moving throw leaves of the node.
       print("test the result of moving inside the node.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+\\sin(|\$x\$)^{-1}");
+      expect(tree.toLaTeXString, "4+\\sin(|x)^{-1}");
 
       // Leaving the node
       print("test the result of leaving form left side.");
       tree.moveLeft();
-      expect(tree.toLaTeXString, "4+|\\sin(\$x\$)^{-1}");
+      expect(tree.toLaTeXString, "4+|\\sin(x)^{-1}");
 
       // Enter the node
       print("test the result of entering form left side.");
       tree.moveRight();
-      expect(tree.toLaTeXString, "4+\\sin(|\$x\$)^{-1}");
+      expect(tree.toLaTeXString, "4+\\sin(|x)^{-1}");
     });
 
     test('should handle integral node correctly', () {
@@ -118,11 +118,11 @@ void main() {
       tree.moveLeft();
       tree.delete();
       tree.addChildLeaf(LEType.variableLeaf, "a");
-      expect(tree.toLaTeXString, "\\int_{\$a\$|}^{\\square}\\text{f(x)}");
+      expect(tree.toLaTeXString, "\\int_{a|}^{\\square}\\text{f(x)}");
 
       tree.moveUp();
       tree.addChildLeaf(LEType.variableLeaf, "b");
-      expect(tree.toLaTeXString, "\\int_{\$a\$}^{\$b\$|}\\text{f(x)}");
+      expect(tree.toLaTeXString, "\\int_{a}^{b|}\\text{f(x)}");
     });
   });
 }
