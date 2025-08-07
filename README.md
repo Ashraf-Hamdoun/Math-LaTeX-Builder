@@ -1,7 +1,12 @@
+
 # Math LaTeX Builder
 
 [![pub version](https://img.shields.io/pub/v/math_latex_builder.svg)](https://pub.dev/packages/math_latex_builder)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![stable](https://img.shields.io/badge/stability-stable-brightgreen)](#)
+
+
+> **Status:** This package is considered **stable** and ready for production use.
 
 ## Programmatic LaTeX Math Expression Construction for Dart & Flutter
 
@@ -46,11 +51,14 @@ Ideal for educational applications, scientific tools, dynamic formula editors, o
 -   **🚀 Pure Dart & Cross-Platform Compatibility**: Developed entirely in Dart, ensuring seamless integration and consistent performance across all Dart and Flutter supported platforms (Web, Mobile, Desktop).
 -   **⚡️ Optimized Performance**: Employs a "dirty-checking" mechanism to intelligently recompute only the modified segments of the LaTeX string, minimizing overhead and ensuring efficient rendering, particularly for dynamic or frequently updated expressions.
 
+
 ## Visual Demonstration
 
-*(Consider embedding a GIF or screenshot here to visually showcase the package's capabilities, especially its dynamic expression building and cursor navigation. This is crucial for UI-oriented packages.)*
-
 ![Package Demo](https://place-hold.it/700x400?text=Dynamic+LaTeX+Generation+Demo)
+
+*The above is a placeholder. Replace with a real GIF or screenshot to showcase dynamic LaTeX building and cursor navigation for best results.*
+
+---
 
 ## Architectural Foundation: The LaTeX Expression Tree
 
@@ -69,7 +77,7 @@ Integrate `math_latex_builder` into your Dart or Flutter project by adding it to
 
 ```yaml
 dependencies:
-  math_latex_builder: ^1.0.15 # Always use the latest stable version
+  math_latex_builder: ^1.0.17 # Always use the latest stable version
 ```
 
 Then, execute `flutter pub get` or `dart pub get` to fetch the package.

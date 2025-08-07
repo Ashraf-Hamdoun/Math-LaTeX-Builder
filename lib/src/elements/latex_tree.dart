@@ -17,57 +17,57 @@ import 'package:math_latex_builder/src/utiles/nodes_generator.dart';
 /// making it easy to add new elements and move the cursor.
 class LaTeXTree {
   final LaTeXTrunk _trunk = LaTeXTrunk(id: "t-0");
-  late LaTeXNode activeParent;
+  late LaTeXNode _activeParent;
 
   LaTeXTree() {
     _trunk.clear();
-    activeParent = _trunk;
+    _activeParent = _trunk;
     _trunk.enterNode();
   }
 
   /// Returns the LaTeX string for the entire expression.
-  String get toLaTeXString => _trunk.computeLaTeXString();
+  String toLaTeXString() => _trunk.computeLaTeXString();
 
   /// Adds a leaf to the active node.
   void addChildLeaf(LEType type, String content) {
     LaTeXLeaf leaf = leavesGenerator(
-      parent: activeParent,
+      parent: _activeParent,
       type: type,
       content: content,
     );
 
-    activeParent.addChildLeaf(leaf);
+    _activeParent.addChildLeaf(leaf);
   }
 
   /// Adds a node to the active node and enters it.
   void addChildNode(LEType type, {String content = ""}) {
     LaTeXNode node = nodesGenerator(
-      parent: activeParent,
+      parent: _activeParent,
       type: type,
       content: content,
     );
 
-    activeParent.addChildNode(node);
-    activeParent.leaveNode();
+    _activeParent.addChildNode(node);
+    _activeParent.leaveNode();
     if (node is LaTeXFractionNode) {
-      activeParent = node.numerator;
+      _activeParent = node.numerator;
     } else if (node is LaTeXNthRootNode) {
-      activeParent = node.indexOfRoot;
+      _activeParent = node.indexOfRoot;
     } else if (node is LaTeXIntegralNode) {
-      activeParent = node.lowerLimit;
+      _activeParent = node.lowerLimit;
     } else if (node is LaTeXSummationNode) {
-      activeParent = node.lowerLimit;
+      _activeParent = node.lowerLimit;
     } else {
-      activeParent = node;
+      _activeParent = node;
     }
-    activeParent.enterNode();
+    _activeParent.enterNode();
   }
 
   /// Moves the cursor in the specified direction.
   void _move(Direction direction) {
-    activeParent.leaveNode();
-    activeParent = activeParent.move(direction);
-    activeParent.enterNode();
+    _activeParent.leaveNode();
+    _activeParent = _activeParent.move(direction);
+    _activeParent.enterNode();
   }
 
   /// Moves
@@ -77,20 +77,20 @@ class LaTeXTree {
   void moveRight() => _move(Direction.right);
 
   void clear() {
-    activeParent.leaveNode();
+    _activeParent.leaveNode();
     _trunk.clear();
-    activeParent = _trunk;
-    activeParent.enterNode();
+    _activeParent = _trunk;
+    _activeParent.enterNode();
   }
 
   /// Deletes the active child and updates the cursor position.
   void delete() {
-    LaTeXNode? node = activeParent.deleteActiveChild();
+    LaTeXNode? node = _activeParent.deleteActiveChild();
     if (node != null) {
       // Parent will be changed!
-      activeParent.leaveNode();
-      activeParent = node;
-      activeParent.enterNode();
+      _activeParent.leaveNode();
+      _activeParent = node;
+      _activeParent.enterNode();
     }
   }
 }
