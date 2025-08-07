@@ -77,7 +77,7 @@ Integrate `math_latex_builder` into your Dart or Flutter project by adding it to
 
 ```yaml
 dependencies:
-  math_latex_builder: ^1.0.17 # Always use the latest stable version
+  math_latex_builder: ^1.0.18 # Always use the latest stable version
 ```
 
 Then, execute `flutter pub get` or `dart pub get` to fetch the package.
@@ -99,16 +99,16 @@ import 'package:math_latex_builder/math_latex_builder.dart';
 
 void main() {
   final tree = LaTeXTree();
-  print(tree.toLaTeXString); // Output: | (Empty tree, cursor at root)
+  print(tree.toLaTeXString); // Output: \(|\) (Empty tree, cursor at root)
 
   tree.addChildLeaf(LEType.numberLeaf, "5");
-  print(tree.toLaTeXString); // Output: 5|
+  print(tree.toLaTeXString); // Output: \(5|\)
 
   tree.addChildLeaf(LEType.operatorLeaf, "+");
-  print(tree.toLaTeXString); // Output: 5+|
+  print(tree.toLaTeXString); // Output: \(5+|\)
 
   tree.addChildLeaf(LEType.numberLeaf, "1");
-  print(tree.toLaTeXString); // Output: 5+1|
+  print(tree.toLaTeXString); // Output: \(5+1|\)
 }
 ```
 
@@ -121,23 +121,23 @@ final tree = LaTeXTree();
 
 tree.addChildLeaf(LEType.numberLeaf, "2");
 tree.addChildLeaf(LEType.operatorLeaf, "+");
-print(tree.toLaTeXString); // Output: 2+|
+  print(tree.toLaTeXString); // Output: \(2+|\)
 
 // Add a fraction node; cursor automatically moves to the numerator.
 tree.addChildNode(LEType.fractionNode);
-print(tree.toLaTeXString); // Output: 2+\frac{ |}{\square}
+  print(tree.toLaTeXString); // Output: \(2+\frac{ |}{\square}\)
 
 // Populate the numerator.
 tree.addChildLeaf(LEType.numberLeaf, "8");
-print(tree.toLaTeXString); // Output: 2+\frac{8|}{\square}
+  print(tree.toLaTeXString); // Output: \(2+\frac{8|}{\square}\)
 
 // Move the cursor to the denominator.
 tree.moveDown();
-print(tree.toLaTeXString); // Output: 2+\frac{8}{ |}
+  print(tree.toLaTeXString); // Output: \(2+\frac{8}{ |}\)
 
 // Populate the denominator.
 tree.addChildLeaf(LEType.numberLeaf, "5");
-print(tree.toLaTeXString); // Output: 2+\frac{8}{5|}
+  print(tree.toLaTeXString); // Output: \(2+\frac{8}{5|}\)
 ```
 
 ### Integral Expression: `\int_{0}^{\infty} f(x) dx`
@@ -147,15 +147,15 @@ final tree = LaTeXTree();
 
 tree.addChildNode(LEType.integralNode); // Cursor moves to lower limit
 tree.addChildLeaf(LEType.numberLeaf, "0");
-print(tree.toLaTeXString); // Output: \int_{0|}^{\square}\square
+  print(tree.toLaTeXString); // Output: \(\int_{0|}^{\square}\square\)
 
 tree.moveUp(); // Move to upper limit
 tree.addChildLeaf(LEType.specialSymbolLeaf, "infty"); // \infty
-print(tree.toLaTeXString); // Output: \int_{0}^{\infty|}\square
+  print(tree.toLaTeXString); // Output: \(\int_{0}^{\infty|}\square\)
 
 tree.moveRight(); // Move to integrand
 tree.addChildLeaf(LEType.textLeaf, "f(x)");
-print(tree.toLaTeXString); // Output: \int_{0}^{\infty}\text{f(x)}|
+  print(tree.toLaTeXString); // Output: \(\int_{0}^{\infty}\text{f(x)}|\)
 
 // For a complete integral, you might manually append 'dx' or similar
 // depending on your rendering needs, as the tree focuses on the mathematical structure.

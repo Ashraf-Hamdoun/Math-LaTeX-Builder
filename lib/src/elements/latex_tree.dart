@@ -26,7 +26,7 @@ class LaTeXTree {
   }
 
   /// Returns the LaTeX string for the entire expression.
-  String toLaTeXString() => _trunk.computeLaTeXString();
+  String toLaTeXString() => "\\(${_trunk.computeLaTeXString()}\\)";
 
   /// Adds a leaf to the active node.
   void addChildLeaf(LEType type, String content) {

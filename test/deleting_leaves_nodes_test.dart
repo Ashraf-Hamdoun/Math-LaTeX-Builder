@@ -16,7 +16,7 @@ void main() {
 
     tree.addChildLeaf(LEType.operatorLeaf, '-');
 
-    expect(tree.toLaTeXString(), equals('5-|9'));
+    expect(tree.toLaTeXString(), equals('\\(5-|9\\)'));
   });
 
   test('should delete function node if it is empty', () {
@@ -30,7 +30,7 @@ void main() {
     tree.delete();
     tree.delete();
 
-    expect(tree.toLaTeXString(), equals('1-|'));
+    expect(tree.toLaTeXString(), equals('\\(1-|\\)'));
   });
 
   test('should delete fraction node if it is empty', () {
@@ -46,7 +46,7 @@ void main() {
     tree.delete();
     tree.delete();
 
-    expect(tree.toLaTeXString(), equals('5+|'));
+    expect(tree.toLaTeXString(), equals('\\(5+|\\)'));
   });
 
   test('should delete nth root node if it is empty', () {
@@ -63,6 +63,6 @@ void main() {
     tree.delete();
     tree.delete();
 
-    expect(tree.toLaTeXString(), equals('5+|'));
+    expect(tree.toLaTeXString(), equals('\\(5+|\\)'));
   });
 }
