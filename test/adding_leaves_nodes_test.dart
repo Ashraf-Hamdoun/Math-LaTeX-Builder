@@ -10,11 +10,7 @@ void main() {
       tree.addChildLeaf(LEType.numberLeaf, "1");
       tree.addChildLeaf(LEType.specialSymbolLeaf, 'times');
       tree.addChildLeaf(LEType.variableLeaf, 'f');
-<<<<<<< HEAD
       expect(tree.toLaTeXString(), '5+1\\timesf|');
-=======
-      expect(tree.toLaTeXString, '5+1\\timesf|');
->>>>>>> 8c099788a0652ac123c1a5c41635ef97ae2ebb9e
     });
 
     test("should add function node correctly", () {
@@ -92,11 +88,7 @@ void main() {
       tree.addChildLeaf(LEType.symbolLeaf, "\\infty");
       tree.moveRight();
       tree.addChildLeaf(LEType.textLeaf, "f(n)");
-<<<<<<< HEAD
       expect(tree.toLaTeXString(), '\\sum_{n=0}^{\\infty}\\text{f(n)}|');
-=======
-      expect(tree.toLaTeXString, '\\sum_{n=0}^{\\infty}\\text{f(n)}|');
->>>>>>> 8c099788a0652ac123c1a5c41635ef97ae2ebb9e
     });
   });
 }

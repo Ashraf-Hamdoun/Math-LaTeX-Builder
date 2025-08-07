@@ -1,10 +1,6 @@
 name: math_latex_builder
 description: A stable Dart package to programmatically build and manipulate LaTeX math expressions using a tree-based structure.
-<<<<<<< HEAD
 version: 1.0.17
-=======
-version: 1.0.16
->>>>>>> 8c099788a0652ac123c1a5c41635ef97ae2ebb9e
 repository: https://github.com/Ashraf-Hamdoun/Math-LaTeX-Builder.git
 homepage: https://github.com/Ashraf-Hamdoun/Math-LaTeX-Builder
 issue_tracker: https://github.com/Ashraf-Hamdoun/Math-LaTeX-Builder/issues

@@ -77,11 +77,7 @@ Integrate `math_latex_builder` into your Dart or Flutter project by adding it to
 
 ```yaml
 dependencies:
-<<<<<<< HEAD
   math_latex_builder: ^1.0.17 # Always use the latest stable version
-=======
-  math_latex_builder: ^1.0.16 # Always use the latest stable version
->>>>>>> 8c099788a0652ac123c1a5c41635ef97ae2ebb9e
 ```
 
 Then, execute `flutter pub get` or `dart pub get` to fetch the package.
