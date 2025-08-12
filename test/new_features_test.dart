@@ -86,21 +86,21 @@ void main() {
       controller.pressInversedSine();
       controller.pressNumber("0.5");
 
-      expect(latexTree.toLaTeXString(), r'\(\sin(0.5|)^{-1}\)');
+      expect(latexTree.toLaTeXString(), r'\(\sin^{-1}(0.5|)\)');
     });
 
     test('should add inversed cosine function correctly', () {
       controller.pressInversedCosine();
       controller.pressNumber("0.8");
 
-      expect(latexTree.toLaTeXString(), r'\(\cos(0.8|)^{-1}\)');
+      expect(latexTree.toLaTeXString(), r'\(\cos^{-1}(0.8|)\)');
     });
 
     test('should add inversed tangent function correctly', () {
       controller.pressInversedTangent();
       controller.pressNumber("1");
 
-      expect(latexTree.toLaTeXString(), r'\(\tan(1|)^{-1}\)');
+      expect(latexTree.toLaTeXString(), r'\(\tan^{-1}(1|)\)');
     });
 
     test('should add Pi symbol correctly', () {
