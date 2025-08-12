@@ -1,3 +1,6 @@
+## 1.0.21
+    - Change a file's name.
+
 ## 1.0.20
 
 - Fixed incorrect LaTeX generation for inverse functions (e.g., `\sin^{-1}(x)`).
