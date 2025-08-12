@@ -49,7 +49,7 @@ class LaTeXSummationNode extends LaTeXNode {
       initialType: LEType.summandNode,
     );
 
-    // Add the children to the integral node
+    // Add the children to the summation node
 
     addChildNode(lowerLimit);
 
@@ -67,8 +67,7 @@ class LaTeXSummationNode extends LaTeXNode {
 
   @override
   String computeLaTeXString() {
-    // Returns the full LaTeX string for the integral, including
-
+    // Returns the full LaTeX string for the summation, including
     // the lower limit, upper limit, and the summand.
     // The \int command is prefixed, and the limits are in a subscript and superscript.
     // We add a small space `\,` before a placeholder differential 'dx' for clarity,
@@ -80,32 +79,24 @@ class LaTeXSummationNode extends LaTeXNode {
   LaTeXNode move(Direction direction) {
     if (direction == Direction.left) {
       // Logic for moving left
-
       if (position == 3) {
         position = 1;
-
         return lowerLimit;
       } else {
-        // Move out of the integral node to the left
-
+        // Move out of the summation node to the left
         parent!.position--;
-
         return parent!;
       }
     } else {
       // direction == Direction.right
-
       // Logic for moving right
-
       if (position != 3) {
         position = 3;
-
         return summand;
       } else {
-        // Move out of the integral node to the right
-
-        parent!.position++;
-
+        // Move out of the summation node to the right
+        // it will return after the summation in the parent
+        // so it is not needto => parent!.position++;
         return parent!;
       }
     }
@@ -113,40 +104,22 @@ class LaTeXSummationNode extends LaTeXNode {
 
   @override
   LaTeXNode? deleteActiveChild() {
-    LaTeXNode activeChild = children[position] as LaTeXNode;
-
-    // If the active child is not empty, handle the deletion within the child.
-
-    if (activeChild.children.isNotEmpty) {
-      return activeChild.deleteActiveChild();
-    }
-
-    // If the active child is empty, delete it from the children list.
-
-    // The integral node can only be deleted if all of its children are empty.
-
-    if (lowerLimit.children.isEmpty &&
-        upperLimit.children.isEmpty &&
-        summand.children.isEmpty) {
-      // All children are empty, so we can delete the integral node itself.
-
-      parent!.deleteActiveChild();
-
-      return parent;
-    }
-
-    // A child is empty, but others are not. Move to the previous position.
-
-    if (position > 1) {
-      position--;
-
-      return this;
+    // The summation node can only be deleted if all of its children are empty.
+    if (lowerLimit.children.length == 1 &&
+        upperLimit.children.length == 1 &&
+        summand.children.length == 1) {
+      // All children are empty, so we can delete the summation node itself.
+      return parent!.deleteActiveChild();
     } else {
-      // If the first child (lowerLimit) is empty, move to the parent.
-
-      parent!.deleteActiveChild();
-
-      return parent;
+      // One of children is not empty
+      // Move back ...
+      if (position >= 2) {
+        position--;
+        return (position == 2) ? upperLimit : lowerLimit;
+      } else {
+        // Get out
+        return parent!;
+      }
     }
   }
 }

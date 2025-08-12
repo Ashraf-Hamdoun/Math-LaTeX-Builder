@@ -90,18 +90,20 @@ LaTeXNode nodesGenerator({
 
     case LEType.integralNode:
       node = LaTeXIntegralNode(
-          id: idsGenerator(type, parent.id),
-          parent: parent,
-          updateParent: (childId, childValue) =>
-              parent.onUpdateChildren(childId, childValue));
+        id: idsGenerator(type, parent.id),
+        parent: parent,
+        updateParent: (childId, childValue) =>
+            parent.onUpdateChildren(childId, childValue),
+      );
       break;
 
     case LEType.summationNode:
       node = LaTeXSummationNode(
-          id: idsGenerator(type, parent.id),
-          parent: parent,
-          updateParent: (childId, childValue) =>
-              parent.onUpdateChildren(childId, childValue));
+        id: idsGenerator(type, parent.id),
+        parent: parent,
+        updateParent: (childId, childValue) =>
+            parent.onUpdateChildren(childId, childValue),
+      );
       break;
 
     default:

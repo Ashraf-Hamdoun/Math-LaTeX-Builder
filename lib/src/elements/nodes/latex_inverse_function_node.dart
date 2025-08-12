@@ -12,10 +12,10 @@ class LaTeXInverseFunctionNode extends LaTeXNode {
   });
 
   @override
-  String get getType => LEType.indexOfRootNode.name;
+  String get getType => LEType.inverseFunctionNode.name;
 
   @override
   String computeLaTeXString() {
-    return "\\$function(${super.computeLaTeXString()})^{-1}";
+    return "\\$function^{-1}(${super.computeLaTeXString()})";
   }
 }

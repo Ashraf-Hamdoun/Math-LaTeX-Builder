@@ -1,3 +1,9 @@
+## 1.0.20
+
+- Fixed incorrect LaTeX generation for inverse functions (e.g., `\sin^{-1}(x)`).
+- Exported `LaTeXInputController` for direct use.
+- Corrected `getType` for `LaTeXInverseFunctionNode`.
+
 ## 1.0.19
 
 - Version bump for maintenance.

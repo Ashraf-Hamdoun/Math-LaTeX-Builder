@@ -49,8 +49,9 @@ abstract class LaTeXNode extends LaTeXElement {
     if (_children.length == 1) {
       return (_isActive) ? markOfInsertPoint : "\\square";
     } else {
-      List<String> parts =
-          _children.map((child) => child.toLaTeXString()).toList();
+      List<String> parts = _children
+          .map((child) => child.toLaTeXString())
+          .toList();
       if (_isActive) {
         parts.insert(position + 1, '|');
       }

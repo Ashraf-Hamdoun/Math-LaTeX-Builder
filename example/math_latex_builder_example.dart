@@ -106,7 +106,8 @@ void main(List<String> args) {
   tree.addChildLeaf(LEType.numberLeaf, "5");
   tree.addChildLeaf(LEType.operatorLeaf, "-");
   tree.addChildNode(
-      LEType.squareRootNode); // Cursor moves into the square root.
+    LEType.squareRootNode,
+  ); // Cursor moves into the square root.
   tree.addChildLeaf(LEType.numberLeaf, "7");
   print("Current LaTeX: ${tree.toLaTeXString}");
   // Output: y=1-\\frac{f^{n}[\\frac{s.1}{f}+(\\frac{15-\\sqrt{7|} }{\\square})]}{\\square}

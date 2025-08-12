@@ -39,20 +39,20 @@ enum LEType {
 extension LETypeUserFacing on LEType {
   /// Returns true if this type is intended for user code.
   bool get isUserFacing => const {
-        LEType.functionNode,
-        LEType.inverseFunctionNode,
-        LEType.fractionNode,
-        LEType.squareRootNode,
-        LEType.cubeRootNode,
-        LEType.nthRootNode,
-        LEType.powerNode,
-        LEType.integralNode,
-        LEType.summationNode,
-        LEType.numberLeaf,
-        LEType.operatorLeaf,
-        LEType.variableLeaf,
-        LEType.symbolLeaf,
-        LEType.specialSymbolLeaf,
-        LEType.textLeaf,
-      }.contains(this);
+    LEType.functionNode,
+    LEType.inverseFunctionNode,
+    LEType.fractionNode,
+    LEType.squareRootNode,
+    LEType.cubeRootNode,
+    LEType.nthRootNode,
+    LEType.powerNode,
+    LEType.integralNode,
+    LEType.summationNode,
+    LEType.numberLeaf,
+    LEType.operatorLeaf,
+    LEType.variableLeaf,
+    LEType.symbolLeaf,
+    LEType.specialSymbolLeaf,
+    LEType.textLeaf,
+  }.contains(this);
 }

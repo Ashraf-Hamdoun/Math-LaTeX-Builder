@@ -17,4 +17,9 @@ class LaTeXTrunk extends LaTeXNode {
 
   /// The default callback for child updates.
   static void _defaultUpdateParent(String childId, String childValue) {}
+
+  @override
+  String toLaTeXString() {
+    return "\\(${super.toLaTeXString()}\\)";
+  }
 }

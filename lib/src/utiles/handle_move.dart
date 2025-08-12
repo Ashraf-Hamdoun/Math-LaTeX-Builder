@@ -32,6 +32,7 @@ LaTeXNode? handleMove(Direction direction, LaTeXNode parent) {
       break;
   }
 
+  // Return new parent.
   if (proposedParent != null && proposedParent != parent) {
     if (proposedParent.childrenIDs.contains(parent.id)) {
       if (proposedParent is LaTeXFractionNode) {
@@ -111,8 +112,9 @@ LaTeXNode? handleMoveLeft(LaTeXNode parent) {
     if (grandParent != null) {
       if (grandParent is LaTeXFractionNode) {
         proposedParent = grandParent.move(Direction.left);
-      }
-      if (grandParent is LaTeXIntegralNode) {
+      } else if (grandParent is LaTeXNthRootNode) {
+        proposedParent = grandParent.move(Direction.left);
+      } else if (grandParent is LaTeXIntegralNode) {
         proposedParent = grandParent.move(Direction.left);
       } else if (grandParent is LaTeXSummationNode) {
         proposedParent = grandParent.move(Direction.left);
@@ -136,9 +138,11 @@ LaTeXNode? handleMoveDown(LaTeXNode parent) {
   if (grandParent != null) {
     if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.numeratorNode) {
+      grandParent.position = 2;
       proposedParent = (grandParent as LaTeXFractionNode).denominator;
     } else if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.upperLimitNode) {
+      grandParent.position = 1;
       if (grandParent is LaTeXIntegralNode) {
         proposedParent = grandParent.lowerLimit;
       } else if (grandParent is LaTeXSummationNode) {
@@ -162,9 +166,11 @@ LaTeXNode? handleMoveUp(LaTeXNode parent) {
   if (grandParent != null) {
     if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.denominatorNode) {
+      grandParent.position = 1;
       proposedParent = (grandParent as LaTeXFractionNode).numerator;
     } else if (parent is LaTeXNodeWithInitialType &&
         parent.initialType == LEType.lowerLimitNode) {
+      grandParent.position = 2;
       if (grandParent is LaTeXIntegralNode) {
         proposedParent = grandParent.upperLimit;
       } else if (grandParent is LaTeXSummationNode) {
